@@ -17,8 +17,7 @@
         }
 
         .table {
-            background-color: #FFF !important;
-            background-color: #FFF !important;
+            background-color: #FFF;
             border-left-width: 1px;
             border-top-width: 1px;
             border-left-style: outset;
@@ -51,8 +50,7 @@
     <td bgcolor="#FFFFFF" style="margin-bottom:0px; margin-top:0px" colspan="2">
         <h3 align="center" style="background-color:#CC0000; color:#FFF;">Please Fill Your Details Here</h3></td>
 
-    <td bgcolor="#FFFFF" align="center" style="color:maroon; font-size:18px; font-weight:bold; colspan="
-    1">
+    <td bgcolor="#FFFFF" align="center" style="color:maroon;" font-size:18px; font-weight:bold; colspan="1">
     <span>DATE: </span>
     <span>
         <script language="JavaScript" type="text/javascript">
@@ -118,12 +116,23 @@
         if(isNaN(document.getElementsByName("mo")[0].value) || document.getElementsByName("mo")[0].value.length != 10){
             alert('Please fill valid mobile number');
             return false;
-	}
-	if(document.getElementsByName("add1")[0].value == "" || document.getElementsByName("add2")[0].value == "" || 	document.getElementsByName("add3")[0].value == ""){
-            alert('Please fill Address');
+        }
+        if(document.getElementsByName("address1")[0].value == ""){
+            alert('Please fill Address Line 1');
             return false;
         }
-         
+        if(document.getElementsByName("address2")[0].value == ""){
+            alert('Please fill Address Line 2');
+            return false;
+        }
+        if(document.getElementsByName("addressCity")[0].value == ""){
+            alert('Please fill City');
+            return false;
+        }
+        if(document.getElementsByName("addressState")[0].value == "") || document.getElementsByName("addressState")[0].value.length != 2){
+            alert('Please fill State');
+            return false;
+        }
         if(isNaN(document.getElementsByName("pin")[0].value) || document.getElementsByName("pin")[0].value.length != 5){
             alert('Please fill valid zip code');
             return false;
@@ -147,7 +156,7 @@
     <td bgcolor="#FFFFFF" rowspan="9">
         <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
                 codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"
-                width="400" height="477">
+                width="512" height="477">
             <param name="movie" value="slide2.swf"/>
             <param name="quality" value="high"/>
             <param name="allowFullScreen" value="true"/>
@@ -157,7 +166,7 @@
                    quality="high"
                    type="application/x-shockwave-flash"
                    WMODE="transparent"
-                   width="400"
+                   width="512"
                    height="477"
                    allowFullScreen="true"
                    pluginspage="http://www.macromedia.com/go/getflashplayer"
@@ -167,7 +176,7 @@
 
     </td>
 </tr>
-<tr bgcolor="#FFFFFF" style="height: 10px;">
+<tr bgcolor="#FFFFFF">
     <td width="160" style="font-family:Verdana, Geneva, sans-serif">Gender:</td>
     <td><p style="font-family:Verdana, Geneva, sans-serif;"><input type="Radio" name="submit" value="Male"/>
             Male <input type="radio" name="submit" value="Female"/>Female</p></td>
@@ -322,21 +331,30 @@
     <td width="160" style="font-family:Verdana, Geneva, sans-serif">Mobile No:</td>
     <td><input style="width:170px" type="number" name="mo"/></td>
 </tr>
-
 <tr bgcolor="#FFFFFF">
-    <td width="160" style="font-family:Verdana, Geneva, sans-serif">Address Line1:</td>
-    <td><input style="width:170px" type="text" name="add1"/></td>
+    <td width="160" style="font-family:Verdana, Geneva, sans-serif">Address Line 1:</td>
+    <td>
+        <input style="font-family:Verdana, Geneva, sans-serif" cols="22" rows="4"
+                  name="address1"></input></td>
 </tr>
 <tr bgcolor="#FFFFFF">
-    <td width="160" style="font-family:Verdana, Geneva, sans-serif">Address Line2:</td>
-    <td><input style="width:170px" type="text" name="add2"/></td>
+    <td width="160" style="font-family:Verdana, Geneva, sans-serif">Address Line 2:</td>
+    <td>
+        <input style="font-family:Verdana, Geneva, sans-serif" cols="22" rows="4"
+                  name="address2"></input></td>
 </tr>
 <tr bgcolor="#FFFFFF">
     <td width="160" style="font-family:Verdana, Geneva, sans-serif">City:</td>
-    <td><input style="width:170px" type="text" name="add3"/></td>
+    <td>
+        <input style="font-family:Verdana, Geneva, sans-serif" cols="22" rows="4"
+                  name="addressCity"></input></td>
 </tr>
-
-
+<tr bgcolor="#FFFFFF">
+    <td width="160" style="font-family:Verdana, Geneva, sans-serif">State (Abbr.):</td>
+    <td>
+        <input style="font-family:Verdana, Geneva, sans-serif" cols="22" rows="4"
+                  name="addressState" maxlength="2" size="2"></input></td>
+</tr>
 <tr bgcolor="#FFFFFF">
     <td width="160" style="font-family:Verdana, Geneva, sans-serif">Zip code:</td>
     <td><input style="width:170px" type="text" name="pin"/></td>
@@ -347,7 +365,11 @@
 </tr>
 <tr bgcolor="#FFFFFF">
     <td width="160" style="font-family:Verdana, Geneva, sans-serif">Password:</td>
-    <td><input style="width:170px" type="password" name="pass"/></td>
+    <td><input maxlength="10" size="10" type="password" name="pass"/></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+    <td width="160" style="font-family:Verdana, Geneva, sans-serif">Confirm Password:</td>
+    <td><input maxlength="10" size="10" type="password" name="cPass"/></td>
 </tr>
 <tr bgcolor="#FFFFFF">
     <td colspan="2" align="left">
@@ -369,18 +391,24 @@ if (isset($_POST['s1'])) {
     $z = $_POST['year'];
     $dob = $z . "-" . $y . "-" . $x;
     $mobile = $_POST['mo'];
-    $address1 = $_POST['add1'];
-    $address2 = $_POST['add2'];
-    $address3 = $_POST['add3'];
+    $address1 = $_POST['address1'];
+    $address2 = $_POST['address2'];
+    $addressCity = $_POST['addressCity'];
+    $addressState = $_POST['addressState'];
     $pin_code = $_POST['pin'];
     $email = $_POST['email'];
     $password = $_POST['pass'];
+    $confirmPassword = $_POST['cPass'];
     $date = date('Y-m-d');
+    
+    if($password != $confirmPassword){
+        echo("Error: Passwords must match");
+        exit;
+    }
 
-    $sql = mysql_connect("localhost", "root", "");
-    $re = mysql_select_db('bus_rev');
+    $connection = mysqli_connect('localhost', 'root', '', 'bus_rev');
 
-if ($name == '' || $gender == '' || $dob == '' || $mobile == '' || $address1 == '' || $address3 == '' || $address2 == '' || $pin_code == '' || $email == '' || $password == '' || $date == ''){
+if ($name == '' || $gender == '' || $dob == '' || $mobile == '' || $address1 == '' || $address2 == '' || $addressCity == '' || $addressState == '' || $pin_code == '' || $email == '' || $password == '' || $date == ''){
     ?>
     <script>
         alert('Please fill all the entries');
@@ -389,13 +417,12 @@ if ($name == '' || $gender == '' || $dob == '' || $mobile == '' || $address1 == 
 exit;
 }
 
-$sql2 = mysql_query("select * from register where email='$email'");
-if (mysql_num_rows($sql2) == 0)
+$sql2 = mysqli_query($connection, "select * from register where email='$email'");
+if (mysqli_num_rows($sql2) == 0)
 {
-$a = "insert into register(name,gender,dob,mobile,address1, address2, address3, pin_code,email,password,reg_date)values('" . $name . "','" . $gender . "','" . $dob . "','" . $mobile . "','" . $address1 . "','" . $address2 . "','" . $address3 . "','" . $pin_code . "','" . $email . "','" . $password . "','" . $date . "')";
-$c = mysql_query($a);
+mysqli_query($connection, "INSERT INTO `register` (`name`, `gender`, `dob`, `mobile`, `address1`, `address2`, `addressCity`, `addressState`, `pin_code`, `email`, `password`, `reg_date`) VALUES ($name, $gender, $dob, $mobile, $address1, $address2, $addressCity, $addressState, $pin_code, $email, $password, $date)");
 
-$id = mysql_insert_id();
+$id = mysqli_insert_id($connection);
 
 $history = $id . 'user_history';
 
