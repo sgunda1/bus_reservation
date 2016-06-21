@@ -23,6 +23,7 @@ if (isset($_SESSION['id']))
 
 <body style="background-color: #5F87B1;" topmargin="0" bottommargin="0">
 
+
 <table bgcolor="#FFFFCC" style="margin-top:0" align="center" width="807" border="1" cellpadding="0" cellspacing="0">
 
     <tr>
@@ -59,16 +60,41 @@ if (isset($_SESSION['id']))
                 <dd style="text-align: left">
                     <a href="Home.php?id=<?php echo $uid; ?>">Home</a>
                 </dd>
+
+                <dd style="text-align: left">
+                    <a href="myticket.php?id=<?php echo $uid; ?>">My Tickets</a>
+                </dd>
+
+                <dd style="text-align: left">
+                    <a href="Feedback_Page.php?id=<?php echo $uid; ?>">Feedback</a>
+                </dd>
+
                 <dd style="text-align: left">
                     <a href="logout.php">Logout</a>
                 </dd>
             </dl>
     </tr>
 </table>
-
+    <script>
+        function formValidations()
+        {
+            if(document.getElementsByName("from")[0].value == "" || document.getElementsByName("from")[0].value == "0"){
+                alert('Please fill From Stop');
+                return false;
+            }
+            if(document.getElementsByName("to")[0].value == "" || document.getElementsByName("to")[0].value == "0"){
+                alert('Please fill To Stop');
+                return false;
+            }
+            if(document.getElementsByName("journeyDate")[0].value == ""){
+                alert('Please fill Journey Data');
+                return false;
+            }
+        }
+    </script>
 <table cellpadding="0" cellspacing="0" border="0" class="maintable" align="center"
        width="805" valign="middle" style="background-color: #FFFFCC;">
-    <form method="post">
+    <form method="post" onSubmit="return formValidations()">
         <tr class="tabtitle">
             <td colspan="4">
                 <table cellspacing="0" cellpadding="0" width="805" style="margin-top: 20px;margin-bottom: 10px;">
@@ -202,10 +228,20 @@ if (isset($_POST['search'])) {
                 <td nowrap="nowrap"><?php echo $distance; ?></td>
                 <td><?php echo $fare; ?></td>
                 <td><?php echo $c; ?></td>
-                <td><a href="#">Book</a></td>
+                <td><a href="res.php?id=<?php echo $uid; ?>&bus=<?php echo $bus; ?>">Book</a>
+                </td>
             </tr></table>
         <?php
         }
+    } else {
+        ?>
+    <table width="805" height="62" align="center" cellpadding="2" cellspacing="2" class="table"
+           bordercolor="red" b style="background-color: #FFFFCC;">
+        <tr align="center">
+            <td>No service Available</td>
+        </tr>
+    </table>
+        <?php
     }
 }
 ?>
@@ -217,8 +253,8 @@ if (isset($_POST['search'])) {
             <script type="text/javascript">
 
                 var todaydate = new Date()
-                var curmonth = todaydate.getMonth() + 1
-                var curyear = todaydate.getFullYear()
+                var curmonth = todaydate.getMonth() + 1 //get current month (1-12)
+                var curyear = todaydate.getFullYear() //get current year
 
                 document.write(buildCal(curmonth, curyear, "main", "month", "daysofweek", "days", 1));
             </script>
@@ -232,8 +268,8 @@ if (isset($_POST['search'])) {
                             'July', 'August', 'September', 'October', 'November', 'December']
 
                         var todaydate = new Date()
-                        var curmonth = todaydate.getMonth() + 1
-                        var curyear = todaydate.getFullYear()
+                        var curmonth = todaydate.getMonth() + 1 //get current month (1-12)
+                        var curyear = todaydate.getFullYear() //get current year
 
                         function updatecalendar(theselection) {
                             var themonth = parseInt(theselection[theselection.selectedIndex].value) + 1
@@ -243,7 +279,7 @@ if (isset($_POST['search'])) {
                         }
 
                         document.write('<option value="' + (curmonth - 1) + '" selected="yes">Current Month</option>')
-                        for (i = 0; i < 12; i++)
+                        for (i = 0; i < 12; i++) //display option for 12 months of the year
                             document.write('<option value="' + i + '">' + themonths[i] + ' ' + curyear + '</option>')
 
 
@@ -252,6 +288,7 @@ if (isset($_POST['search'])) {
 
                 <div id="calendarspace">
                     <script>
+                        //write out current month's calendar to start
                         document.write(buildCal(curmonth, curyear, "main", "month", "daysofweek", "days", 0))
                     </script>
                 </div>
@@ -262,8 +299,8 @@ if (isset($_POST['search'])) {
             <script type="text/javascript">
 
                 var todaydate = new Date()
-                var curmonth = todaydate.getMonth() + 1
-                var curyear = todaydate.getFullYear()
+                var curmonth = todaydate.getMonth() + 1 //get current month (1-12)
+                var curyear = todaydate.getFullYear() //get current year
 
             </script>
 

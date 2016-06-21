@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>:: Online Bus-Ticket Reservation ::</title>
+    <!--<link rel="stylesheet" href="style.css" />-->
     <style>
 
         .table tr td {
@@ -17,8 +18,7 @@
         }
 
         .table {
-            background-color: #FFF !important;
-            background-color: #FFF !important;
+            background-color: #FFF;
             border-left-width: 1px;
             border-top-width: 1px;
             border-left-style: outset;
@@ -38,7 +38,9 @@
 </head>
 
 <body style="background-color: #5F87B1;" topmargin="0" bottommargin="0">
-
+<div align="center" style="width:800; vertical-align:bottom">
+    <img src="http://electricvehicle.ieee.org/files/2012/04/BYD-eBUS-121.jpg" width="807" height="150"/>
+</div>
 
 <table class="table" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF">
 <tr>
@@ -53,19 +55,7 @@
 
     <td bgcolor="#FFFFF" align="center" style="color:maroon; font-size:18px; font-weight:bold; colspan="
     1">
-    <span>DATE: </span>
-    <span>
-        <script language="JavaScript" type="text/javascript">
-            var d = new Date();
-            var monthname = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-
-            var TODAY = d.getDate() + "- " + monthname[d.getMonth()] + "-" + d.getFullYear();
-
-            document.write(TODAY);
-        </script>
-    </span>
-    <br>
-    <span>TIME: </span>
+    <span>TIME: - </span>
     <span display:table" id="clock">
 
 
@@ -96,58 +86,25 @@
         updateClock();
         setInterval(updateClock, 100);
     </script>
+    <script language="JavaScript" type="text/javascript">
+        var d = new Date();
+        var monthname = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 
+        var TODAY = d.getDate() + "- " + monthname[d.getMonth()] + "-" + d.getFullYear();
+
+        document.write(TODAY);
+    </script>
     </span>
-
     </td> </tr>
 
-<script>
-    function validateForm() {
-        if(document.getElementsByName("name")[0].value == ""){
-            alert('Please fill Name');
-            return false;
-        }
-        if(document.querySelector('input[name="submit"]:checked') == null){
-            alert('Please fill Gender');
-            return false;
-        }
-        if(document.getElementsByName("day")[0].value == "" || document.getElementsByName("month")[0].value == "" || document.getElementsByName("year")[0].value == ""){
-            alert('Please fill date of birth');
-            return false;
-        }
-        if(isNaN(document.getElementsByName("mo")[0].value) || document.getElementsByName("mo")[0].value.length != 10){
-            alert('Please fill valid mobile number');
-            return false;
-	}
-	if(document.getElementsByName("add1")[0].value == "" || document.getElementsByName("add2")[0].value == "" || 	document.getElementsByName("add3")[0].value == ""){
-            alert('Please fill Address');
-            return false;
-        }
-         
-        if(isNaN(document.getElementsByName("pin")[0].value) || document.getElementsByName("pin")[0].value.length != 5){
-            alert('Please fill valid zip code');
-            return false;
-        }
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if(!re.test(document.getElementsByName("email")[0].value)){
-            alert('Please fill valid email');
-            return false;
-        }
-        if(document.getElementsByName("pass")[0].value.length < 8 || document.getElementsByName("pass")[0].value.length > 10){
-            alert('Please select 8 to 10 characters as password');
-            return false;
-        }
-    }
-</script>
-
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="f2" onSubmit="return validateForm()">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="f2">
 <tr bgcolor="#FFFFFF">
-    <td bgcolor="#FFFFFF" width="160" style="font-family:Verdana, Geneva, sans-serif">Name:</td>
+    <td bgcolor="#FFFFFF" width="160" style="font-family:Verdana, Geneva, sans-serif">Username:</td>
     <td><input type="text" name="name" style="width:170px"/></td>
     <td bgcolor="#FFFFFF" rowspan="9">
         <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
                 codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"
-                width="400" height="477">
+                width="512" height="477">
             <param name="movie" value="slide2.swf"/>
             <param name="quality" value="high"/>
             <param name="allowFullScreen" value="true"/>
@@ -157,7 +114,7 @@
                    quality="high"
                    type="application/x-shockwave-flash"
                    WMODE="transparent"
-                   width="400"
+                   width="512"
                    height="477"
                    allowFullScreen="true"
                    pluginspage="http://www.macromedia.com/go/getflashplayer"
@@ -167,7 +124,7 @@
 
     </td>
 </tr>
-<tr bgcolor="#FFFFFF" style="height: 10px;">
+<tr bgcolor="#FFFFFF">
     <td width="160" style="font-family:Verdana, Geneva, sans-serif">Gender:</td>
     <td><p style="font-family:Verdana, Geneva, sans-serif;"><input type="Radio" name="submit" value="Male"/>
             Male <input type="radio" name="submit" value="Female"/>Female</p></td>
@@ -322,23 +279,14 @@
     <td width="160" style="font-family:Verdana, Geneva, sans-serif">Mobile No:</td>
     <td><input style="width:170px" type="number" name="mo"/></td>
 </tr>
-
 <tr bgcolor="#FFFFFF">
-    <td width="160" style="font-family:Verdana, Geneva, sans-serif">Address Line1:</td>
-    <td><input style="width:170px" type="text" name="add1"/></td>
+    <td width="160" style="font-family:Verdana, Geneva, sans-serif">Address:</td>
+    <td>
+        <textarea style="background-color:#FFC; font-family:Verdana, Geneva, sans-serif" cols="22" rows="4"
+                  name="add"></textarea></td>
 </tr>
 <tr bgcolor="#FFFFFF">
-    <td width="160" style="font-family:Verdana, Geneva, sans-serif">Address Line2:</td>
-    <td><input style="width:170px" type="text" name="add2"/></td>
-</tr>
-<tr bgcolor="#FFFFFF">
-    <td width="160" style="font-family:Verdana, Geneva, sans-serif">City:</td>
-    <td><input style="width:170px" type="text" name="add3"/></td>
-</tr>
-
-
-<tr bgcolor="#FFFFFF">
-    <td width="160" style="font-family:Verdana, Geneva, sans-serif">Zip code:</td>
+    <td width="160" style="font-family:Verdana, Geneva, sans-serif">Pin code:</td>
     <td><input style="width:170px" type="text" name="pin"/></td>
 </tr>
 <tr bgcolor="#FFFFFF">
@@ -358,8 +306,10 @@
 </tr>
 </form>
 
-</table>
 
+</table>
+<div align="center" style="width:803; position:static"><img align="top" width="801" src="images1/footer.jpg"/>
+</div>
 <?php
 if (isset($_POST['s1'])) {
     $name = $_POST['name'];
@@ -369,9 +319,7 @@ if (isset($_POST['s1'])) {
     $z = $_POST['year'];
     $dob = $z . "-" . $y . "-" . $x;
     $mobile = $_POST['mo'];
-    $address1 = $_POST['add1'];
-    $address2 = $_POST['add2'];
-    $address3 = $_POST['add3'];
+    $address = $_POST['add'];
     $pin_code = $_POST['pin'];
     $email = $_POST['email'];
     $password = $_POST['pass'];
@@ -380,28 +328,29 @@ if (isset($_POST['s1'])) {
     $sql = mysql_connect("localhost", "root", "");
     $re = mysql_select_db('bus_rev');
 
-if ($name == '' || $gender == '' || $dob == '' || $mobile == '' || $address1 == '' || $address3 == '' || $address2 == '' || $pin_code == '' || $email == '' || $password == '' || $date == ''){
+if ($name == '' || $gender == '' || $dob == '' || $mobile == '' || $address == '' || $pin_code == '' || $email == '' || $password == '' || $date == ''){
     ?>
     <script>
-        alert('Please fill all the entries');
+        alert('Please fill all the enteries');
     </script>
 <?php
-exit;
 }
 
 $sql2 = mysql_query("select * from register where email='$email'");
 if (mysql_num_rows($sql2) == 0)
 {
-$a = "insert into register(name,gender,dob,mobile,address1, address2, address3, pin_code,email,password,reg_date)values('" . $name . "','" . $gender . "','" . $dob . "','" . $mobile . "','" . $address1 . "','" . $address2 . "','" . $address3 . "','" . $pin_code . "','" . $email . "','" . $password . "','" . $date . "')";
+$a = "insert into register(name,gender,dob,mobile,address,pin_code,email,password,reg_date)values('" . $name . "','" . $gender . "','" . $dob . "','" . $mobile . "','" . $address . "','" . $pin_code . "','" . $email . "','" . $password . "','" . $date . "')";
 $c = mysql_query($a);
 
 $id = mysql_insert_id();
 
 $history = $id . 'user_history';
 
+//$sql1 = mysql_query("CREATE TABLE $history(`id` INT NOT NULL AUTO_INCREMENT ,`from` VARCHAR( 120 ) NOT NULL ,`to` VARCHAR( 120 ) NOT NULL ,`journey_date` DATE NOT NULL ,`booking_date` DATE NOT NULL ,`seats_booked` INT NOT NULL ,`dept_time` TIME NOT NULL ,`distance` INT NOT NULL ,PRIMARY KEY ( `id` ) ) ENGINE = MYISAM ;");
+
+echo "You are Registered Successfully";
 ?>
     <script>
-        alert('You are Registered Successfully');
         window.location = 'index.php';
     </script>
 <?php

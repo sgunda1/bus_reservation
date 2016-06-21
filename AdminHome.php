@@ -23,7 +23,6 @@ if (isset($_SESSION['id']))
 <body style="background-color: #5F87B1;" topmargin="0" bottommargin="0">
 
 
-
 <table bgcolor="#FFFFCC" style="margin-top:0" align="center" width="807" border="1" cellpadding="0" cellspacing="0">
 
     <tr>
@@ -60,6 +59,22 @@ if (isset($_SESSION['id']))
                 <dd style="text-align: left">
                     <a href="AdminHome.php?id=<?php echo $uid; ?>">Home</a>
                 </dd>
+<!--                <dd style="text-align: left">
+                    <a href="add_bus.php?id=<?php // echo $uid; ?>">Add Buses</a>
+                </dd>-->
+
+                <dd style="text-align: left">
+                    <a href="view_bus.php?id=<?php echo $uid; ?>">View Buses</a>
+                </dd>
+
+                <dd style="text-align: left">
+                    <a href="myticket.php?id=<?php echo $uid; ?>">All Tickets</a>
+                </dd>
+
+                <dd style="text-align: left">
+                    <a href="view_feedback.php?id=<?php echo $uid; ?>">View Feedback</a>
+                </dd>
+
                 <dd style="text-align: left">
                     <a href="logout.php">Logout</a>
                 </dd>
@@ -136,8 +151,8 @@ if (isset($_POST['search'])) {
             <script type="text/javascript">
 
                 var todaydate = new Date()
-                var curmonth = todaydate.getMonth() + 1
-                var curyear = todaydate.getFullYear()
+                var curmonth = todaydate.getMonth() + 1 //get current month (1-12)
+                var curyear = todaydate.getFullYear() //get current year
 
                 document.write(buildCal(curmonth, curyear, "main", "month", "daysofweek", "days", 1));
             </script>
@@ -151,8 +166,8 @@ if (isset($_POST['search'])) {
                             'July', 'August', 'September', 'October', 'November', 'December']
 
                         var todaydate = new Date()
-                        var curmonth = todaydate.getMonth() + 1)
-                        var curyear = todaydate.getFullYear()
+                        var curmonth = todaydate.getMonth() + 1 //get current month (1-12)
+                        var curyear = todaydate.getFullYear() //get current year
 
                         function updatecalendar(theselection) {
                             var themonth = parseInt(theselection[theselection.selectedIndex].value) + 1
@@ -162,7 +177,7 @@ if (isset($_POST['search'])) {
                         }
 
                         document.write('<option value="' + (curmonth - 1) + '" selected="yes">Current Month</option>')
-                        for (i = 0; i < 12; i++)
+                        for (i = 0; i < 12; i++) //display option for 12 months of the year
                             document.write('<option value="' + i + '">' + themonths[i] + ' ' + curyear + '</option>')
 
 
@@ -171,6 +186,7 @@ if (isset($_POST['search'])) {
 
                 <div id="calendarspace">
                     <script>
+                        //write out current month's calendar to start
                         document.write(buildCal(curmonth, curyear, "main", "month", "daysofweek", "days", 0))
                     </script>
                 </div>
@@ -181,8 +197,8 @@ if (isset($_POST['search'])) {
             <script type="text/javascript">
 
                 var todaydate = new Date()
-                var curmonth = todaydate.getMonth() + 1
-                var curyear = todaydate.getFullYear()
+                var curmonth = todaydate.getMonth() + 1 //get current month (1-12)
+                var curyear = todaydate.getFullYear() //get current year
 
             </script>
 

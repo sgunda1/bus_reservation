@@ -40,17 +40,26 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_Deprecated);
         }
     </style>
 
-
     <script language="javascript">
 
-
-        function validate() {
-            if (document.getElementById('user').value == '') {
-                alert('Please enter Username!');
-                document.getElementById('username').focus();
-                return false;
-            }
-
+            function validate() {
+//            if (document.getElementById('user').value == '') {
+//                alert('Email cannot be Null!');
+//                document.getElementById('username').focus();
+//                return false;
+//            }
+            
+            
+//                function validateForm() {
+                    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    if((!re.test(document.getElementsByName("user")[0].value))){
+                        alert('Please enter valid Email!');
+                        return false;
+                    }
+//                }
+            
+            
+        
             if (document.getElementById('pass').value == '') {
                 alert('Please enter Password!');
                 document.getElementById('pwd').focus();
@@ -129,15 +138,15 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_Deprecated);
             </script>
 
 
-            <script>
+<!--            <script>
                 function validateForm() {
                     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                     if(!re.test(document.getElementsByName("user")[0].value)){
-                        alert('Please fill valid email');
+                        alert('Please fill valid Email');
                         return false;
                     }
                 }
-            </script>
+            </script>-->
 
         </td>
 
@@ -210,7 +219,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_Deprecated);
                     <script>
                         window.location = 'Home.php?id=<?php echo $uid; ?>';
                     </script>
-                <?php
+                    <?php
                 }
 
                 }
