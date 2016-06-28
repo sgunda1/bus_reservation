@@ -16,6 +16,7 @@ if (isset($_SESSION['id'])) {
     $dept_time = $re1['dept_time'];
     $arrival_time = $re1['arrival_time'];
     $distance = $re1['distance'];
+    $j_date = $re1['date'];
     $fare = $re1['fare'];
     if ($choice != '') {
         if ($choice == 'W'/* && $seat == 1*/) {
@@ -31,7 +32,7 @@ if (isset($_SESSION['id'])) {
             while ($r = mysql_fetch_array($p)) {
                 $id = $r['id'];
                 $q3 = mysql_query("update $bust set status ='Booked' where id='$id'");
-                $q4 = mysql_query("insert into user_history(user_id, bus_id,bus_name, from_stop , to_stop, booking_date, seat_no_booked, dept_time, distance, fare) values('" . $uid . "','" . $bus . "','" . $bus_name . "', '" . $from . "', '" . $to . "', '" . $date . "', '" . $id . "', '" . $dept_time . "', '" . $distance . "', '" . $fare . "')");
+                $q4 = mysql_query("insert into user_history(user_id, bus_id,bus_name, from_stop , to_stop, journey_date , booking_date, seat_no_booked, dept_time, distance, fare) values('" . $uid . "','" . $bus . "','" . $bus_name . "', '" . $from . "', '" . $to . "', '" . $j_date . "', '"  . $date . "', '" . $id . "', '" . $dept_time . "', '" . $distance . "', '" . $fare . "')");
 
             }
 

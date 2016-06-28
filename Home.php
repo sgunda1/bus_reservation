@@ -87,7 +87,7 @@ if (isset($_SESSION['id']))
                 return false;
             }
             if(document.getElementsByName("journeyDate")[0].value == ""){
-                alert('Please fill Journey Data');
+                alert('Please fill Journey Date');
                 return false;
             }
         }

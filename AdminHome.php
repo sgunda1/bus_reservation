@@ -59,9 +59,9 @@ if (isset($_SESSION['id']))
                 <dd style="text-align: left">
                     <a href="AdminHome.php?id=<?php echo $uid; ?>">Home</a>
                 </dd>
-<!--                <dd style="text-align: left">
-                    <a href="add_bus.php?id=<?php // echo $uid; ?>">Add Buses</a>
-                </dd>-->
+                <dd style="text-align: left">
+                    <a href="add_bus.php?id=<?php echo $uid; ?>">Add Buses</a>
+                </dd>
 
                 <dd style="text-align: left">
                     <a href="view_bus.php?id=<?php echo $uid; ?>">View Buses</a>

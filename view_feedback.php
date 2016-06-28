@@ -70,8 +70,7 @@ if (mysql_num_rows($query) > 0) {
         alert("You dont have any buses");
         window.location = "AdminHome.php?id=<?php echo $uid; ?>";
     </script>
-    <!--    <h2 style="font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serif">You Dont Have any Booking History</h2>
-    -->    <?php
+        <?php
 }
 ?>
 <div style="width: 800px;margin: auto; margin-top: 15px;">

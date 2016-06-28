@@ -14,7 +14,7 @@
 </head>
 <body  style="background-color: #5F87B1;">
 
-<form action="" method="post">
+<form action="" method="post" onSubmit="return validateForm()">
 
 
     <table width="800px" style="margin: auto;">
@@ -55,17 +55,51 @@
             <input type="submit" value="Submit Feedback" name="submit_feedback"/></td>
         </tr>
     </table>
+    
+    <script>
+    function validateForm() {
+        if(document.getElementsByName("name")[0].value == ""){
+            alert('Please fill Name');
+            return false;
+        }
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(!re.test(document.getElementsByName("email")[0].value)){
+            alert('Please fill valid email');
+            return false;
+        }
+        if(document.getElementsByName("comments")[0].value == ""){
+            alert('Please fill Comments');
+            return false;
+        }
+        }
+    </script>
 </form>
+
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="f1"></form>
 <?php
 if (isset($_POST['submit_feedback'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $comments = $_POST['comments'];
+    
+    
+    
+    
+    
+    if ($name == '' || $email == '' || $comments == ''){
+    ?>
+    <script>
+        alert('Please fill all the entries');
+    </script>
+    <?php
+    exit;
+    }
 
     $sql = mysql_query("insert into feedback (name, comments, email) VALUES ('$name','$comments','$email')");
 
     echo $sql;
     if ($sql > 0) {
+//        $sql = mysql_query("insert into feedback (name, comments, email) VALUES ('$name','$comments','$email')");
         echo "<script type='text/javascript'>alert('Feedback Submitted Successfully');
                                         window.location.href='Home.php?';
                 </script>";

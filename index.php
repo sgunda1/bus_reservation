@@ -155,8 +155,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_Deprecated);
     <tr>
         <td colspan="2">
 
-            <h3 style="font-family:Verdana, Geneva, sans-serif; color: #000; margin-bottom:0px; margin-top:0px">Login
-                Screen</h3></td>
+            <h3 style="font-family:Verdana, Geneva, sans-serif; color: #000; margin-bottom:0px; margin-top:0px">Login Screen</h3></td>
     </tr>
 
     <tr>
