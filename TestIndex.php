@@ -1,9 +1,13 @@
 <?php
-class testing  {
+
+require_once('simpletest/autorun.php');
+require_once('simpletest/web_tester.php');
+
+class testing extends WebTestCase {
     
 public function testSuccessful() {
 
-  $this->assertTrue(get('http://localhost/bus_reservation/index.php'));
+  $this->get('http://localhost/bus_reservation/index.php');
   $this->assertResponse(200);
 
   $this->setField("user", "user@email.com");
@@ -11,14 +15,17 @@ public function testSuccessful() {
   
   $this->clickSubmit("Login");
 
-  print_r($this->assertResponse(200));
-  print_r($this-> assertTrue(set('http://localhost/bus_reservation/Home.php')));
-
+  $this->assertResponse(200);
+//  $this->assertTitle(new PatternExpectation('/:: HOME ::/'));
+  $this->get('http://localhost/bus_reservation/Home.php?id=5');
+  $this->assertResponse(200);
+  
 }
+
 
 function testInvalidEmailAddress() {
   
-     $this-> assertTrue(get('http://localhost/bus_reservation/index.php'));
+  $this->get('http://localhost/bus_reservation/index.php');
   $this->assertResponse(200);
 
   $this->setField("user", "user.com");
@@ -26,14 +33,13 @@ function testInvalidEmailAddress() {
   
   $this->clickSubmit("Login");
 
-  $this->assertResponse(500);
-  $this->assertText("Please enter valid Email!");
-
+  $this->get('http://localhost/bus_reservation/Home.php?id=5');
+  $this->assertResponse(302);  
 }
 
 function testInvalidPassword() {
   
-     $this-> assertTrue(get('http://localhost/bus_reservation/index.php'));
+  $this->get('http://localhost/bus_reservation/index.php');
   $this->assertResponse(200);
 
   $this->setField("user", "user@email.com");
@@ -41,14 +47,14 @@ function testInvalidPassword() {
   
   $this->clickSubmit("Login");
 
-  $this->assertResponse(500);
-  $this->assertText("Invalid Credentials");
+  $this->get('http://localhost/bus_reservation/Home.php?id=5');
+  $this->assertResponse(302);
 
 }
 
 function testUnsuccessful() {
 
-$this->assertTrue(get('http://localhost/bus_reservation/index.php'));
+  $this->get('http://localhost/bus_reservation/index.php');
   $this->assertResponse(200);
 
   $this->setField("user", "user.com");
@@ -56,16 +62,12 @@ $this->assertTrue(get('http://localhost/bus_reservation/index.php'));
   
   $this->clickSubmit("Login");
 
-  $this->assertResponse(500);
-
-  $this->assertText("Please enter valid Email!");
-  $this->assertText("Invalid Credentials");
+  $this->get('http://localhost/bus_reservation/Home.php?id=5');
+  $this->assertResponse(302);
 
 }
 }
 
-$foobar = new testing;  // correct
-$foobar->testSuccessful();
 
 
 
